@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GearMates — Your Gear, Your Trips, Always Ready</title>
+  <meta name="description" content="GearMates is the gear management app for people who pack with purpose. Track your inventory, plan smarter packing lists, and get AI-powered pre-trip briefings.">
+  <meta property="og:title" content="GearMates — Your Gear, Always Ready">
+  <meta property="og:description" content="Track your gear inventory, build smarter packing lists, and get AI-powered trip briefings before you ever leave the door.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta name="theme-color" content="#1E6B65">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Entrance animation styles -->
+  <style>
+    .observe { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .observe.in-view { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- ================================================
+       NAVIGATION
+       ================================================ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo" aria-label="GearMates home">
+        <!-- Carabiner logo mark -->
+        <svg width="28" height="36" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 5 C8 5 2 10 2 18 C2 26 8 31 20 31" stroke="#2B8C84" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+          <rect x="18" y="2" width="8" height="3.2" rx="1.6" fill="#2B8C84"/>
+          <line x1="22" y1="5.2" x2="22" y2="13" stroke="#2B8C84" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="2" cy="18" r="2.5" fill="#2B8C84"/>
+        </svg>
+        <span class="nav__wordmark">GearMates</span>
+      </a>
+
+      <div class="nav__links" id="navLinks">
+        <a href="#locker"   class="nav__link">Gear Locker</a>
+        <a href="#trips"    class="nav__link">Trip Planner</a>
+        <a href="#ai"       class="nav__link">AI Concierge</a>
+        <a href="about.html" class="nav__link">About</a>
+        <a href="#faq"      class="nav__link">FAQ</a>
+      </div>
+
+      <a href="#waitlist" class="nav__cta">Join the Waitlist</a>
+
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="nav__mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <a href="#locker"   class="nav__link">Gear Locker</a>
+      <a href="#trips"    class="nav__link">Trip Planner</a>
+      <a href="#ai"       class="nav__link">AI Concierge</a>
+      <a href="about.html" class="nav__link">About</a>
+      <a href="#faq"      class="nav__link">FAQ</a>
+      <a href="#waitlist" class="nav__cta">Join the Waitlist</a>
+    </div>
+  </nav>
+
+
+  <!-- ================================================
+       HERO
+       ================================================ -->
+  <section class="hero" aria-labelledby="heroHeadline">
+
+    <!-- Portrait mascot — visible on wide screens (1280px+) -->
+    <img src="mascot_images/mascot-portrait.png" class="hero__portrait-badge" alt="" aria-hidden="true">
+
+    <!-- Topographic rings -->
+    <div class="hero__topo" aria-hidden="true">
+      <svg viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="600" cy="400" rx="570" ry="370" stroke="white" stroke-width="1.5"/>
+        <ellipse cx="600" cy="400" rx="465" ry="298" stroke="white" stroke-width="1.5"/>
+        <ellipse cx="600" cy="400" rx="360" ry="228" stroke="white" stroke-width="1.5"/>
+        <ellipse cx="600" cy="400" rx="256" ry="160" stroke="white" stroke-width="1.5"/>
+        <ellipse cx="600" cy="400" rx="155" ry="96"  stroke="white" stroke-width="1.5"/>
+        <ellipse cx="600" cy="400" rx="70"  cy="400" ry="45"  stroke="white" stroke-width="1.5"/>
+      </svg>
+    </div>
+
+    <div class="hero__content">
+      <span class="eyebrow eyebrow--light">Coming soon to iOS</span>
+      <h1 id="heroHeadline">Know your gear.<br><em>Own every trip.</em></h1>
+      <p>GearMates is your gear's home base — a living inventory, smarter packing lists, and an AI concierge that keeps you one step ahead before you ever leave the door.</p>
+
+      <form class="hero__form" id="heroForm" novalidate>
+        <input
+          class="hero__input"
+          type="email"
+          placeholder="your@email.com"
+          name="email"
+          required
+          autocomplete="email"
+          aria-label="Email address for waitlist"
+        >
+        <button type="submit" class="btn btn--primary">Get Early Access</button>
+      </form>
+
+      <div class="waitlist__success" id="heroSuccess" role="alert">
+        <img src="mascot_images/Masot_celebrate_empty_background.png" class="waitlist__success-mascot" alt="Gear the Quokka celebrating" width="120">
+        <h3 style="color:white;">You're on the list!</h3>
+        <p style="color:rgba(255,255,255,0.65);">We'll reach out as soon as GearMates opens its gates. Adventure incoming.</p>
+      </div>
+
+      <p class="hero__note">Free for early supporters &nbsp;·&nbsp; No spam, ever</p>
+
+      <div class="platform-badges">
+        <span class="platform-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          iOS App — Coming Soon
+        </span>
+        <span class="platform-badge">Android — TBD</span>
+      </div>
+    </div>
+
+    <!-- Phone mockups -->
+    <div class="hero__phones" aria-label="App screenshots">
+      <div class="phone phone--side">
+        <div class="phone__screen">
+          <div class="phone__placeholder" aria-hidden="true">
+            <div class="phone__mock-bar"></div>
+            <div class="phone__mock-title"></div>
+            <div class="phone__mock-card"></div>
+            <div class="phone__mock-row"></div>
+            <div class="phone__mock-row"></div>
+          </div>
+          <img src="assets/screenshots/screen-locker.png" class="phone__img" alt="Gear Locker screen showing inventory" onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <div class="phone phone--main float">
+        <div class="phone__screen">
+          <div class="phone__placeholder" aria-hidden="true">
+            <div class="phone__mock-bar"></div>
+            <div class="phone__mock-title"></div>
+            <div class="phone__mock-card"></div>
+            <div class="phone__mock-card"></div>
+            <div class="phone__mock-row"></div>
+          </div>
+          <img src="assets/screenshots/screen-home.png" class="phone__img" alt="GearMates home dashboard" onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <div class="phone phone--side float-delay">
+        <div class="phone__screen">
+          <div class="phone__placeholder" aria-hidden="true">
+            <div class="phone__mock-bar"></div>
+            <div class="phone__mock-title"></div>
+            <div class="phone__mock-card"></div>
+            <div class="phone__mock-row"></div>
+            <div class="phone__mock-row"></div>
+          </div>
+          <img src="assets/screenshots/screen-ai.png" class="phone__img" alt="AI Concierge showing pre-trip alerts" onerror="this.style.display='none'">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ================================================
+       FEATURES STRIP
+       ================================================ -->
+  <section class="features-strip" aria-label="Key features">
+    <div class="container">
+      <div class="features-strip__grid">
+
+        <a href="#locker" class="feature-card" style="cursor:pointer;">
+          <div class="feature-card__icon">🎒</div>
+          <h3>Gear Locker</h3>
+          <p>Your complete gear inventory with condition ratings, service history, photos, and notes. A living record that stays honest.</p>
+        </a>
+
+        <a href="#trips" class="feature-card" style="cursor:pointer;">
+          <div class="feature-card__icon feature-card__icon--peach">✈️</div>
+          <h3>Trip Planner</h3>
+          <p>Per-trip packing lists with clear intent tracking — Have it, Need it, Want it, Still deciding. Share with your travel crew.</p>
+        </a>
+
+        <a href="#ai" class="feature-card" style="cursor:pointer;">
+          <div class="feature-card__icon feature-card__icon--sage">✨</div>
+          <h3>AI Concierge</h3>
+          <p>Proactive suggestion cards that fire at the right moment — pre-trip audits, mid-trip shop recommendations, post-trip logging.</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       GEAR LOCKER
+       ================================================ -->
+  <section class="feature-section" id="locker" aria-labelledby="lockerHeading">
+    <div class="container">
+      <div class="feature-section__inner">
+
+        <!-- Visual -->
+        <div class="feature-section__visual">
+          <div class="phone phone--main">
+            <div class="phone__screen">
+              <div class="phone__placeholder">
+                <div class="phone__mock-bar"></div>
+                <div class="phone__mock-title"></div>
+                <div class="phone__mock-card"></div>
+                <div class="phone__mock-row"></div>
+                <div class="phone__mock-row"></div>
+                <div class="phone__mock-row"></div>
+              </div>
+              <img src="assets/screenshots/screen-locker.png" class="phone__img" alt="Gear Locker screen showing inventory items with condition badges" onerror="this.style.display='none'">
+            </div>
+          </div>
+
+          <!-- Floating gear health card -->
+          <div class="gear-demo" style="position:absolute; right:-20px; bottom:60px; z-index:4;">
+            <div class="gear-demo__title">Gear Health</div>
+            <div class="gear-demo__row">
+              <span class="gear-demo__name">Osprey 55L</span>
+              <span class="badge badge--great">Great</span>
+            </div>
+            <div class="gear-demo__row">
+              <span class="gear-demo__name">Headlamp</span>
+              <span class="badge badge--good">Good</span>
+            </div>
+            <div class="gear-demo__row">
+              <span class="gear-demo__name">Life Straw</span>
+              <span class="badge badge--replace">Replace Soon</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="feature-section__copy">
+          <span class="eyebrow">Gear Locker</span>
+          <h2 id="lockerHeading">Everything you own.<br><em>Always current.</em></h2>
+          <p>Your gear isn't static — why should your record of it be? GearMates tracks every item with condition ratings, service history, photos, and notes. From Great to Replace Soon, your locker stays honest.</p>
+
+          <div class="feature-bullets">
+            <div class="bullet">
+              <div class="bullet__dot"></div>
+              <p>Five condition levels — <strong>Great, Good, Fair, Needs Service, Replace Soon</strong> — so you always know what's ready and what isn't</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot"></div>
+              <p>Service history and maintenance notes on every item, not just the things you're thinking about right now</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot"></div>
+              <p>Photo documentation per item — snap a photo when you buy it, when you repair it, when it's worn in</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot"></div>
+              <p>Filter by category, condition, or brand to find anything fast</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       TRIP PLANNER
+       ================================================ -->
+  <section class="feature-section feature-section--alt" id="trips" aria-labelledby="tripsHeading">
+    <div class="container">
+      <div class="feature-section__inner feature-section__inner--reverse">
+
+        <!-- Copy -->
+        <div class="feature-section__copy">
+          <span class="eyebrow">Trip Planner</span>
+          <h2 id="tripsHeading">Pack together.<br><em>Leave nothing behind.</em></h2>
+          <p>Create a packing list for each trip and invite your travel crew. See who's bringing what, coordinate who's buying what, and track your readiness score as departure approaches.</p>
+
+          <div class="feature-bullets">
+            <div class="bullet">
+              <div class="bullet__dot bullet__dot--peach"></div>
+              <p><strong>Four packing intents:</strong> Have it, Need it, Want it, Still deciding — no more ambiguity about what's actually packed</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot bullet__dot--peach"></div>
+              <p>Shared trips give collaborators a combined view — who owns what, who's sourcing what, no duplicate tent poles</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot bullet__dot--peach"></div>
+              <p>AI-matched items from your Gear Locker auto-populate your list with what you already own</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot bullet__dot--peach"></div>
+              <p>A readiness score (0–100) tells you exactly how prepared you are before you head out</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="feature-section__visual">
+          <img
+            src="mascot_images/Mascot_past_trip.png"
+            class="feature-section__mascot"
+            alt="Gear the Quokka holding a trip planning app"
+            width="160"
+          >
+          <div class="phone phone--main">
+            <div class="phone__screen">
+              <div class="phone__placeholder">
+                <div class="phone__mock-bar"></div>
+                <div class="phone__mock-title"></div>
+                <div class="phone__mock-card"></div>
+                <div class="phone__mock-row"></div>
+                <div class="phone__mock-row"></div>
+                <div class="phone__mock-row"></div>
+              </div>
+              <img src="assets/screenshots/screen-trips.png" class="phone__img" alt="Trip Planner showing New Zealand packing list" onerror="this.style.display='none'">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       AI CONCIERGE
+       ================================================ -->
+  <section class="feature-section feature-section--dark" id="ai" aria-labelledby="aiHeading">
+
+    <!-- Topographic rings -->
+    <div class="topo-bg" aria-hidden="true">
+      <svg viewBox="0 0 1000 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="500" cy="300" rx="480" ry="280" stroke="white" stroke-width="1.5" opacity="0.07"/>
+        <ellipse cx="500" cy="300" rx="380" ry="215" stroke="white" stroke-width="1.5" opacity="0.07"/>
+        <ellipse cx="500" cy="300" rx="280" ry="152" stroke="white" stroke-width="1.5" opacity="0.07"/>
+        <ellipse cx="500" cy="300" rx="180" ry="95"  stroke="white" stroke-width="1.5" opacity="0.07"/>
+      </svg>
+    </div>
+
+    <div class="container text-white">
+      <div class="feature-section__inner">
+
+        <!-- Visual -->
+        <div class="feature-section__visual">
+          <div class="mascot-card float">
+            <img
+              src="mascot_images/mascot-thinking.png"
+              alt="Gear the Quokka thinking about AI suggestions"
+              width="140"
+            >
+          </div>
+
+          <div class="phone phone--main" style="z-index:2;">
+            <div class="phone__screen">
+              <div class="phone__placeholder">
+                <div class="phone__mock-bar"></div>
+                <div class="phone__mock-title"></div>
+                <div class="phone__mock-card"></div>
+                <div class="phone__mock-row"></div>
+              </div>
+              <img src="assets/screenshots/screen-ai.png" class="phone__img" alt="AI Concierge showing pre-trip gear alerts" onerror="this.style.display='none'">
+            </div>
+          </div>
+        </div>
+
+        <!-- Copy -->
+        <div class="feature-section__copy">
+          <span class="eyebrow eyebrow--light">AI Concierge</span>
+          <h2 id="aiHeading">Not a chatbot.<br><em>A concierge.</em></h2>
+          <p>The AI Concierge doesn't wait for you to ask. It fires proactive suggestion cards at exactly the right moment — pre-trip, mid-trip, and post-trip — so you're always a step ahead.</p>
+
+          <div class="feature-bullets">
+            <div class="bullet">
+              <div class="bullet__dot bullet__dot--light"></div>
+              <p><strong>Pre-trip gear audit:</strong> Flags items that need fixing or replacing before your trip departs — no nasty surprises in the field</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot bullet__dot--light"></div>
+              <p><strong>Mid-trip local intel:</strong> GPS-aware recommendations for nearby gear shops, repair spots, and resupply points based on where you are</p>
+            </div>
+            <div class="bullet">
+              <div class="bullet__dot bullet__dot--light"></div>
+              <p><strong>Post-trip logging:</strong> Condition update prompts for everything you used, so your locker stays current without the chore</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       SUMMIT CTA BAND
+       ================================================ -->
+  <section style="background: var(--inset); padding: 64px 0; text-align:center; border-bottom: 1px solid var(--border);" aria-label="Adventure call to action">
+    <div class="container" style="display:flex; align-items:center; justify-content:center; gap:48px; flex-wrap:wrap;">
+      <img
+        src="mascot_images/Gearmates Mascot Summit.png"
+        alt="Gear the Quokka standing on a mountain summit"
+        width="160"
+        style="filter: drop-shadow(0 8px 20px rgba(42,32,24,0.12));"
+      >
+      <div style="text-align:left; max-width:420px;">
+        <span class="eyebrow">The adventure starts here</span>
+        <h2 style="font-size:1.9rem; margin-bottom:12px;">Gear that goes places<br><em>deserves better.</em></h2>
+        <p>Stop losing track. Stop the pre-trip scramble. GearMates is the app for the people who pack with intention.</p>
+        <a href="#waitlist" class="btn btn--teal" style="margin-top:24px; display:inline-flex;">Join the waitlist</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       FAQ
+       ================================================ -->
+  <section class="faq" id="faq" aria-labelledby="faqHeading">
+    <div class="container">
+
+      <div class="faq__header">
+        <img
+          src="mascot_images/mascot-confused.png"
+          class="faq__mascot"
+          alt="Gear the Quokka looking at a map with a question mark"
+          width="100"
+        >
+        <span class="eyebrow">FAQ</span>
+        <h2 id="faqHeading">Got questions?</h2>
+      </div>
+
+      <div class="faq__list">
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            What exactly is GearMates?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <p>GearMates is a mobile app that helps you manage your travel and outdoor gear. It combines a personal gear inventory (called your Gear Locker), per-trip packing lists with collaborative sharing, and an AI Concierge that sends you smart, proactive suggestions — before your trip, during it, and when you get back.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            When is it launching and what platform?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <p>GearMates is launching on iOS first. Android is on the roadmap but not confirmed with a timeline yet. Join the waitlist and you'll be first to know the moment it goes live.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Is it free?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <p>We haven't announced pricing yet, but early waitlist members will get a meaningful advantage — we're committed to rewarding the people who believe in the app before it's out. Sign up and you'll hear the details first.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            What does the AI Concierge actually do — is it a chatbot?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <p>Not a chatbot. The AI Concierge works silently in the background and surfaces suggestion cards at the right moment. Pre-trip, it audits your gear and flags anything that should be fixed or replaced. Mid-trip, it uses your location to recommend nearby gear shops or repair spots. Post-trip, it prompts you to log condition updates on the gear you used — keeping your locker current without the hassle of doing it manually.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            Is my gear data private?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <p>Yes. Your Gear Locker is completely private — only you can see what you own. On shared trips, collaborators see a combined packing list but do not see your full inventory or your private notes. We never sell your data or use it for advertising. See our <a href="privacy.html">Privacy Policy</a> for the full details.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            What kind of gear can I track?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <p>Anything you travel or adventure with — hiking gear, camera equipment, travel clothing, footwear, water filters, bags, sleeping systems, documents, electronics, and more. GearMates is designed for the full spectrum: weekend cabin trips to months-long backpacking routes.</p>
+          </div>
+        </div>
+
+        <div class="faq__item">
+          <button class="faq__question" aria-expanded="false">
+            How does the collaborative packing list work?
+            <span class="faq__icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq__answer" role="region">
+            <p>Create a trip, invite your travel companions, and build the packing list together. Each item shows who owns it (pulled from their Gear Locker) and its packing intent — whether someone already has it, needs to buy it, wants it, or is still deciding. This eliminates the coordination mess of "wait, are you bringing the tent or am I?" Your private gear notes and inventory remain invisible to others.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       WAITLIST CTA
+       ================================================ -->
+  <section class="waitlist" id="waitlist" aria-labelledby="waitlistHeading">
+    <div class="container">
+
+      <img
+        src="mascot_images/Masot_celebrate_empty_background.png"
+        class="waitlist__mascot"
+        alt="Gear the Quokka celebrating with arms raised"
+        width="140"
+        aria-hidden="true"
+      >
+
+      <span class="eyebrow eyebrow--peach">Early Access</span>
+      <h2 id="waitlistHeading">Ready to gear up?</h2>
+      <p class="waitlist__sub">GearMates is launching on iOS soon. Join the waitlist now to be first in the door — and get early access when we open the gates.</p>
+
+      <form class="waitlist__form" id="waitlistForm" novalidate>
+        <input
+          class="waitlist__input"
+          type="email"
+          placeholder="your@email.com"
+          name="email"
+          required
+          autocomplete="email"
+          aria-label="Email address for waitlist"
+        >
+        <button type="submit" class="btn btn--primary">Get Early Access</button>
+      </form>
+
+      <div class="waitlist__success" id="waitlistSuccess" role="alert">
+        <img
+          src="mascot_images/Masot_celebrate_empty_background.png"
+          class="waitlist__success-mascot"
+          alt="Gear the Quokka celebrating"
+          width="120"
+        >
+        <h3 style="color: var(--teal-dark);">You're on the list!</h3>
+        <p>Adventure incoming. We'll be in touch the moment GearMates is ready.</p>
+      </div>
+
+      <p class="hero__note" style="margin-top: 16px; color: var(--text-muted);">No spam. Unsubscribe anytime.</p>
+    </div>
+  </section>
+
+
+  <!-- ================================================
+       FOOTER
+       ================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <svg width="24" height="32" viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M20 5 C8 5 2 10 2 18 C2 26 8 31 20 31" stroke="#5BB5AD" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+              <rect x="18" y="2" width="8" height="3.2" rx="1.6" fill="#5BB5AD"/>
+              <line x1="22" y1="5.2" x2="22" y2="13" stroke="#5BB5AD" stroke-width="2.2" stroke-linecap="round"/>
+              <circle cx="2" cy="18" r="2.5" fill="#5BB5AD"/>
+            </svg>
+            <span class="footer__wordmark">GearMates</span>
+          </div>
+          <p class="footer__tagline">The gear app for people who pack with purpose. Know what you have. Plan every trip. Let AI do the rest.</p>
+        </div>
+
+        <div class="footer__col">
+          <h5>App</h5>
+          <ul>
+            <li><a href="#locker">Gear Locker</a></li>
+            <li><a href="#trips">Trip Planner</a></li>
+            <li><a href="#ai">AI Concierge</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="mailto:hello@gear-mates.com">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms of Service</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2025 GearMates. All rights reserved.</span>
+        <div class="footer__ios-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Coming to iOS
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

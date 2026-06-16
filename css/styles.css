@@ -188,9 +188,6 @@ section { padding: 96px 0; }
   height: 34px;
   width: auto;
   flex-shrink: 0;
-  mix-blend-mode: multiply;
-  background: #F0EAE1;
-  border-radius: 6px;
 }
 .footer__logo img {
   height: 26px;

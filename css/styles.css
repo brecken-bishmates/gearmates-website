@@ -188,11 +188,13 @@ section { padding: 96px 0; }
   height: 34px;
   width: auto;
   flex-shrink: 0;
+  mix-blend-mode: multiply;
 }
 .footer__logo img {
   height: 26px;
   width: auto;
   opacity: 0.85;
+  mix-blend-mode: multiply;
 }
 
 .nav__wordmark {

@@ -184,6 +184,16 @@ section { padding: 96px 0; }
   gap: 10px;
   flex-shrink: 0;
 }
+.nav__logo img {
+  height: 34px;
+  width: auto;
+  flex-shrink: 0;
+}
+.footer__logo img {
+  height: 26px;
+  width: auto;
+  opacity: 0.85;
+}
 
 .nav__wordmark {
   font-family: var(--ff-display);
